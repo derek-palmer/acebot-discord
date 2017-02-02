@@ -8,16 +8,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/derek-palmer/bitbot-discord.git"
+    "url": "git+https://github.com/derek-palmer/acebot-discord.git"
   },
   "author": "Derek Palmer",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/derek-palmer/bitbot-discord/issues"
+    "url": "https://github.com/derek-palmer/acebot-discord/issues"
   },
-  "homepage": "https://github.com/derek-palmer/bitbot-discord#readme",
+  "homepage": "https://github.com/derek-palmer/acebot-discord#readme",
   "dependencies": {
     "discord.js": "^11.0.0",
-    "dotenv": "^4.0.0"
+    "dotenv": "^4.0.0",
+    "nodejs": "0.0.0"
   }
 }
