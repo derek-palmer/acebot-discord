@@ -28,3 +28,8 @@ nodemon app.js
 ```
 
 Nodemon will keep wait for changes to the file system and automatically restart upon any changes.
+
+##Commands (work in progress):
+
+!pong - Sends "ping" back to user
+!bitcoin - Responds with current USD market price of bitcoin

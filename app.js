@@ -10,7 +10,7 @@ acebot.on('ready', () => {
 
 //Ping - Pong
 acebot.on('message', message => {
-  if(message.author.bot) return;
+  if (message.author.bot) return;
   if (message.content === '!pong') {
     message.reply('ping');
   }
@@ -18,7 +18,7 @@ acebot.on('message', message => {
 
 //Bitcoin
 acebot.on('message', message => {
-  if(message.author.bot) return;
+  if (message.author.bot) return;
   if (message.content === '!bitcoin') {
     request('https://blockchain.info/ticker', function (error, response, body) {
       if (!error && response.statusCode == 200) {
