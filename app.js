@@ -1,5 +1,5 @@
-var env = require('dotenv').config()
-var request = require('request');
+require('dotenv').config();
+require('request');
 
 const Discord = require('discord.js');
 const bitbot = new Discord.Client();
@@ -8,13 +8,15 @@ bitbot.on('ready', () => {
   console.log('I am ready!');
 });
 
+//Ping - Pong
 bitbot.on('message', message => {
   if(message.author.bot) return;
-  if (message.content === '!ping') {
-    message.reply('pong');
+  if (message.content === '!pong') {
+    message.reply('ping');
   }
 });
 
+//Bitcoin
 bitbot.on('message', message => {
   if(message.author.bot) return;
   if (message.content === '!bitcoin') {
