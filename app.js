@@ -31,7 +31,7 @@ bitbot.on('message', message => {
         var result = JSON.parse(body);
         console.log(result);
         var USD = result.USD.last;
-        console.log(result.USD.last);
+        console.log(USD);
       }
     })
     message.reply.USD;
