@@ -15,11 +15,11 @@ npm install
 ```
 Your App/Bot, client ID and token which can be created here:
 
-![DiscordApp Developer Portal](https://discordapp.com/developers/applications/me/)
+https://discordapp.com/developers/applications/me/
 
 Add your bot to your discord server:
 
-![Discord invite](https://discordapp.com/oauth2/authorize?&client_id=YOUR_CLIENT_ID_HERE&scope=bot&permissions=0)
+https://discordapp.com/oauth2/authorize?&client_id=YOUR_CLIENT_ID_HERE&scope=bot&permissions=0
 
 Add your token to your .env file
 
