@@ -1,5 +1,5 @@
 require('dotenv').config();
-require('request');
+var request = require('request');
 
 const Discord = require('discord.js');
 const bitbot = new Discord.Client();
