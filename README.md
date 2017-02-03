@@ -13,7 +13,7 @@ Install dependencies:
 ```
 npm install
 ```
-Your App/Bot, client ID and token which can be created here:
+Your App/Bot, client ID and token can be created here:
 
 https://discordapp.com/developers/applications/me/
 

@@ -2,14 +2,14 @@ require('dotenv').config();
 var request = require('request');
 
 const Discord = require('discord.js');
-const bitbot = new Discord.Client();
+const acebot = new Discord.Client();
 
-bitbot.on('ready', () => {
+acebot.on('ready', () => {
   console.log('I am ready!');
 });
 
 //Ping - Pong
-bitbot.on('message', message => {
+acebot.on('message', message => {
   if(message.author.bot) return;
   if (message.content === '!pong') {
     message.reply('ping');
@@ -17,7 +17,7 @@ bitbot.on('message', message => {
 });
 
 //Bitcoin
-bitbot.on('message', message => {
+acebot.on('message', message => {
   if(message.author.bot) return;
   if (message.content === '!bitcoin') {
     request('https://blockchain.info/ticker', function (error, response, body) {
@@ -33,4 +33,4 @@ bitbot.on('message', message => {
   }
 });
 
-bitbot.login(process.env.LOGIN_TOKEN);
+acebot.login(process.env.LOGIN_TOKEN);
