@@ -1,4 +1,4 @@
-require('dotenv').config()
+var env = require('dotenv').config()
 var request = require('request');
 
 const Discord = require('discord.js');
@@ -18,23 +18,16 @@ bitbot.on('message', message => {
 bitbot.on('message', message => {
   if(message.author.bot) return;
   if (message.content === '!bitcoin') {
-    message.reply('This functionality is not ready yet, please be patient.');
-  }
-});
-
-bitbot.on('message', message => {
-  if(message.author.bot) return;
-  if (message.content === '!bitcoin-test') {
     request('https://blockchain.info/ticker', function (error, response, body) {
       if (!error && response.statusCode == 200) {
         console.log(body) //Show output
-        var result = JSON.parse(body);
-        console.log(result);
+        var result = JSON.parse(body); //Parse JSON Resultset
+        console.log(result); // Spit out parsed ResultSet
         var USD = result.USD.last;
         console.log(USD);
+        message.reply('the current Bitcoin market price is: $ ' + USD + ' USD');
       }
     })
-    message.reply.USD;
   }
 });
 
