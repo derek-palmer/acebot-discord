@@ -12,17 +12,27 @@ acebot.on('ready', () => {
     console.log('I am ready, gimmie some commands!!');
 });
 
-//Welcome new user
+//Welcome new user and mention them
 acebot.on("guildMemberAdd", member => {
     let guild = member.guild;
-    guild.defaultChannel.sendMessage(`Welcome to the Aceholes! ${member.user.username}`);
+    guild.defaultChannel.sendMessage(`Welcome to the Aceholes! ${member.user}`);
+});
+
+//Log when bot is added to new discord server
+acebot.on("guildCreate", guild =>{
+  console.log(`New guild added : ${guild.name}, owned by ${guild.owner.user.username}`);
+});
+
+//Give role when playing World of Warcraft
+acebot.on("presenceUpdate", (oldMember, newMember) => {
+  let guild = newMember.guild;
+  let playWoW = guild.roles.find("name", "Playing World of Warcraft");
+  if (!playWow) return;
 });
 
 acebot.on('message', message => {
     if (message.author.bot) return;
     if (!message.content.startsWith(prefix)) return;
-
-
     let command = message.content.split(" ")[0];
     command = command.slice(prefix.length);
     console.log(command);
@@ -35,7 +45,7 @@ acebot.on('message', message => {
         message.channel.sendMessage(total);
     }
     //Help
-    if (command === 'help') {
+    if (command === 'helpme') {
         message.reply("help? You don't need help.");
     }
     //Ping - Pong
