@@ -4,7 +4,8 @@ var request = require('request');
 
 const Discord = require('discord.js');
 const acebot = new Discord.Client();
-const prefix = "!";
+const config = require("./config.json");
+const prefix = config.prefix;
 
 //
 acebot.on('ready', () => {
@@ -15,16 +16,31 @@ acebot.on('message', message => {
     if (message.author.bot) return;
     if (!message.content.startsWith(prefix)) return;
 
+
+    let command = message.content.split(" ")[0];
+    command = command.slice(prefix.length);
+    console.log(command);
+
+    //Add numbas
+    if (command === "add") {
+        let numArray = args.map(n => parseInt(n));
+        let total = numArray.reduce( (p, c) => p+c);
+        message.channel.sendMessage(total);
+    }
     //Help
-    if (message.content.startsWith(prefix + 'help')) {
+    if (command === 'help') {
         message.reply("help? You don't need help.");
     }
     //Ping - Pong
-    if (message.content.startsWith(prefix + 'pong')) {
-        message.reply('ping');
+    if (command === 'pong') {
+        message.channel.sendMessage('ping');
+    }
+    //Foo - Bar
+    if (command === 'foo') {
+        message.channel.sendMessage('bar!');
     }
     //Bitcoin
-    if (message.content.startsWith(prefix + 'bitcoin')) {
+    if (command === 'bitcoin') {
         request('https://blockchain.info/ticker', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 console.log(body); //Show output in JSON
