@@ -7,9 +7,15 @@ const acebot = new Discord.Client();
 const config = require("./config.json");
 const prefix = config.prefix;
 
-//
+//Notify when ready
 acebot.on('ready', () => {
     console.log('I am ready, gimmie some commands!!');
+});
+
+//Welcome new user
+acebot.on("guildMemberAdd", member => {
+    let guild = member.guild;
+    guild.defaultChannel.sendMessage(`Welcome to the Aceholes! ${member.user.username}`);
 });
 
 acebot.on('message', message => {
@@ -21,14 +27,8 @@ acebot.on('message', message => {
     command = command.slice(prefix.length);
     console.log(command);
 
-    let args = message.content.split(" ").slice(1);
-
-    //Welcome new user
-    acebot.on("guildMemberAdd", member => {
-        let guild = member.guild;
-        guild.defaultChannel.sendMessage(`Welcome to the Aceholes! ${member.user.username}`);
-    });
     //Add numbas
+    let args = message.content.split(" ").slice(1);
     if (command === "add") {
         let numArray = args.map(n => parseInt(n));
         let total = numArray.reduce((p, c) => p + c);
