@@ -21,10 +21,17 @@ acebot.on('message', message => {
     command = command.slice(prefix.length);
     console.log(command);
 
+    let args = message.content.split(" ").slice(1);
+
+    //Welcome new user
+    acebot.on("guildMemberAdd", member => {
+        let guild = member.guild;
+        guild.defaultChannel.sendMessage(`Welcome to the Aceholes! ${member.user.username}`);
+    });
     //Add numbas
     if (command === "add") {
         let numArray = args.map(n => parseInt(n));
-        let total = numArray.reduce( (p, c) => p+c);
+        let total = numArray.reduce((p, c) => p + c);
         message.channel.sendMessage(total);
     }
     //Help
@@ -47,7 +54,7 @@ acebot.on('message', message => {
                 var result = JSON.parse(body); //Parse JSON Result
                 var USD = result.USD.last; //Set USD variable to the latest USD bitcoin price
                 console.log(USD); //Show price in console
-                message.reply('the current Bitcoin market price is: $ ' + USD + ' USD'); //Send price to user that requested price
+                message.reply(`the current Bitcoin market price is: $ ${USD} USD`); //Send price to user that requested price
             }
         });
     }
