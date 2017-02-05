@@ -1,2 +1,2 @@
-npm install
-nodemon app.js
+sudo npm install
+pm2 start app.js
