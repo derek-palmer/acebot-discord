@@ -1,4 +1,5 @@
 /*jshint esversion: 6 */
+'use strict';
 require('dotenv').config();
 var request = require('request');
 var giphy = require('giphy-api')();
