@@ -24,7 +24,7 @@ acebot.on("guildCreate", guild => {
     console.log(`New guild added : ${guild.name}, owned by ${guild.owner.user.username}`);
 });
 
-//Give role when playing World of Warcraft or Project Highrise
+//Give role when playing World of Warcraft or Project Highrise - BROKEN
 acebot.on("presenceUpdate", (oldMember, newMember) => {
     let guild = newMember.guild;
     let playHighRise = guild.roles.find("name", "Playing Project Highrise");
@@ -43,7 +43,7 @@ acebot.on("presenceUpdate", (oldMember, newMember) => {
     }
 });
 
-//Message commands
+//Message handler
 acebot.on('message', message => {
     if (message.author.bot) return;
     if (!message.content.startsWith(prefix)) return;
@@ -95,9 +95,8 @@ acebot.on('message', message => {
             tag: 'goat'
         }, function(err, res) {
             // Res contains gif data!
-            console.log(res.data.url);
-            var goatURL = res.data.url;
-            message.channel.sendMessage(`:goat: | **Here is your random goat:** ${goatURL}`);
+            var goatURL = res.data.image_url;
+            message.channel.sendFile(goatURL, '', ':goat: | **Here is your random goat:**' ).catch(console.error);
         });
     }
 }); //End message handler
