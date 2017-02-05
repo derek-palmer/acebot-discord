@@ -29,9 +29,9 @@ acebot.on("presenceUpdate", (oldMember, newMember) => {
     let playWoW = guild.roles.find("name", "Playing World of Warcraft");
     if (!playWoW) return;
     if (newMember.user.presence.game && newMember.user.presence.name === "World of Warcraft") {
-        newMember.addRole(playWoW);
+        newMember.addRole(playWoW).catch(console.error);
     } else if (!newMember.user.presence.game && newMember.roles.has(playWoW.id)) {
-        newMember.removeRole(playWow);
+        newMember.removeRole(playWow).catch(console.error);
     }
 });
 
@@ -47,23 +47,23 @@ acebot.on('message', message => {
     if (command === "add") {
         let numArray = args.map(n => parseInt(n));
         let total = numArray.reduce((p, c) => p + c);
-        message.channel.sendMessage(total);
+        message.channel.sendMessage(total).catch(console.error);
     }
     //Help
     if (command === 'helpme') {
-        message.reply("help? You don't need help.");
+        message.reply("help? You don't need help.").catch(console.error);
     }
     //Ping - Pong
     if (command === 'pong') {
-        message.channel.sendMessage('ping');
+        message.channel.sendMessage('ping').catch(console.error);
     }
     //Foo - Bar - locked down to Admin Role only
     if (command === 'foo') {
         let AdminRole = message.guild.roles.find("name", "Admin");
         if (message.member.roles.has(AdminRole.id)) {
-            message.channel.sendMessage('bar!');
+            message.channel.sendMessage('bar!').catch(console.error);
         } else {
-            message.channel.sendMessage(`Hah, you noob. You don't have access to that command!`);
+            message.channel.sendMessage(`Hah, you noob. You don't have access to that command!`).catch(console.error);
         }
     }
     //Bitcoin
@@ -74,7 +74,7 @@ acebot.on('message', message => {
                 var result = JSON.parse(body); //Parse JSON Result
                 var USD = result.USD.last; //Set USD variable to the latest USD bitcoin price
                 console.log(USD); //Show price in console
-                message.reply(`the current Bitcoin market price is: $ ${USD} USD`); //Send price to user that requested price
+                message.reply(`the current Bitcoin market price is: $ ${USD} USD`).catch(console.error); //Send price to user that requested price
             }
         });
     }
