@@ -92,12 +92,12 @@ acebot.on('message', message => {
     if (command === 'goat') {
         // Search with options using callback
         giphy.random({
-            tag: 'funny goat'
+            tag: 'goat'
         }, function(err, res) {
             // Res contains gif data!
             console.log(res.data.url);
-            var goat = res.data.url;
-            message.channel.sendMessage(`**Here is your random goat:** ${goat}`);
+            var goatURL = res.data.url;
+            message.channel.sendMessage(`:goat: | **Here is your random goat:** ${goatURL}`);
         });
     }
 }); //End message handler
