@@ -4,7 +4,7 @@
   "description": "A discord bot for the Acehole Discord Server",
   "main": "app.js",
   "scripts": {
-    "test": "./node_modules/jshint/bin/jshint app.js"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
     "dotenv": "^4.0.0",
     "giphy-api": "^1.2.3",
     "jshint": "^2.9.4",
+    "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
     "request": "^2.79.0"
   }
