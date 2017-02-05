@@ -1,6 +1,7 @@
 /*jshint esversion: 6 */
 require('dotenv').config();
 var request = require('request');
+var giphy = require('giphy-api')();
 
 const Discord = require('discord.js');
 const acebot = new Discord.Client();
@@ -23,11 +24,18 @@ acebot.on("guildCreate", guild => {
     console.log(`New guild added : ${guild.name}, owned by ${guild.owner.user.username}`);
 });
 
-//Give role when playing World of Warcraft
+//Give role when playing World of Warcraft or Project Highrise
 acebot.on("presenceUpdate", (oldMember, newMember) => {
     let guild = newMember.guild;
+    let playHighRise = guild.roles.find("name", "Playing Project Highrise");
     let playWoW = guild.roles.find("name", "Playing World of Warcraft");
+    if (!playHighRise) return;
     if (!playWoW) return;
+    if (newMember.user.presence.game && newMember.user.presence.name === "Project Highrise") {
+        newMember.addRole(playHighRise).catch(console.error);
+    } else if (!newMember.user.presence.game && newMember.roles.has(playHighRise.id)) {
+        newMember.removeRole(playHighRise).catch(console.error);
+    }
     if (newMember.user.presence.game && newMember.user.presence.name === "World of Warcraft") {
         newMember.addRole(playWoW).catch(console.error);
     } else if (!newMember.user.presence.game && newMember.roles.has(playWoW.id)) {
@@ -35,6 +43,7 @@ acebot.on("presenceUpdate", (oldMember, newMember) => {
     }
 });
 
+//Message commands
 acebot.on('message', message => {
     if (message.author.bot) return;
     if (!message.content.startsWith(prefix)) return;
@@ -71,13 +80,26 @@ acebot.on('message', message => {
         request('https://blockchain.info/ticker', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 console.log(body); //Show output in JSON
-                var result = JSON.parse(body); //Parse JSON Result
+                var result = JSON.parse(body);
+                console.log(body); //Parse JSON Result
                 var USD = result.USD.last; //Set USD variable to the latest USD bitcoin price
                 console.log(USD); //Show price in console
                 message.reply(`the current Bitcoin market price is: $ ${USD} USD`).catch(console.error); //Send price to user that requested price
             }
         });
     }
-});
+    //Random goat gif
+    if (command === 'goat') {
+        // Search with options using callback
+        giphy.random({
+            tag: 'funny goat'
+        }, function(err, res) {
+            // Res contains gif data!
+            console.log(res.data.url);
+            var goat = res.data.url;
+            message.channel.sendMessage(`**Here is your random goat:** ${goat}`);
+        });
+    }
+}); //End message handler
 
 acebot.login(process.env.LOGIN_TOKEN);
