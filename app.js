@@ -24,18 +24,11 @@ acebot.on("guildCreate", guild => {
     console.log(`New guild added : ${guild.name}, owned by ${guild.owner.user.username}`);
 });
 
-//Give role when playing World of Warcraft or Project Highrise - BROKEN
+//Give role when playing World of Warcraft - BROKEN
 acebot.on("presenceUpdate", (oldMember, newMember) => {
     let guild = newMember.guild;
-    let playHighRise = guild.roles.find("name", "Playing Project Highrise");
     let playWoW = guild.roles.find("name", "Playing World of Warcraft");
-    if (!playHighRise) return;
     if (!playWoW) return;
-    if (newMember.user.presence.game && newMember.user.presence.name === "Project Highrise") {
-        newMember.addRole(playHighRise).catch(console.error);
-    } else if (!newMember.user.presence.game && newMember.roles.has(playHighRise.id)) {
-        newMember.removeRole(playHighRise).catch(console.error);
-    }
     if (newMember.user.presence.game && newMember.user.presence.name === "World of Warcraft") {
         newMember.addRole(playWoW).catch(console.error);
     } else if (!newMember.user.presence.game && newMember.roles.has(playWoW.id)) {
