@@ -19,15 +19,20 @@ acebot.on("guildMemberAdd", member => {
 });
 
 //Log when bot is added to new discord server
-acebot.on("guildCreate", guild =>{
-  console.log(`New guild added : ${guild.name}, owned by ${guild.owner.user.username}`);
+acebot.on("guildCreate", guild => {
+    console.log(`New guild added : ${guild.name}, owned by ${guild.owner.user.username}`);
 });
 
 //Give role when playing World of Warcraft
 acebot.on("presenceUpdate", (oldMember, newMember) => {
-  let guild = newMember.guild;
-  let playWoW = guild.roles.find("name", "Playing World of Warcraft");
-  if (!playWow) return;
+    let guild = newMember.guild;
+    let playWoW = guild.roles.find("name", "Playing World of Warcraft");
+    if (!playWoW) return;
+    if (newMember.user.presence.game && newMember.user.presence.name === "World of Warcraft") {
+        newMember.addRole(playWoW);
+    } else if (!newMember.user.presence.game && newMember.roles.has(playWoW.id)) {
+        newMember.removeRole(playWow);
+    }
 });
 
 acebot.on('message', message => {
@@ -37,7 +42,7 @@ acebot.on('message', message => {
     command = command.slice(prefix.length);
     console.log(command);
 
-    //Add numbas
+    //Add numbas - do maths
     let args = message.content.split(" ").slice(1);
     if (command === "add") {
         let numArray = args.map(n => parseInt(n));
@@ -52,9 +57,14 @@ acebot.on('message', message => {
     if (command === 'pong') {
         message.channel.sendMessage('ping');
     }
-    //Foo - Bar
+    //Foo - Bar - locked down to Admin Role only
     if (command === 'foo') {
-        message.channel.sendMessage('bar!');
+        let AdminRole = message.guild.roles.find("name", "Admin");
+        if (message.member.roles.has(AdminRole.id)) {
+            message.channel.sendMessage('bar!');
+        } else {
+            message.channel.sendMessage(`Hah, you noob. You don't have access to that command!`);
+        }
     }
     //Bitcoin
     if (command === 'bitcoin') {
