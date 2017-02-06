@@ -1,2 +1,2 @@
-npm install
-pm2 start app.js
+sudo npm install
+sudo pm2 start app.js
