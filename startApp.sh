@@ -1,2 +1,2 @@
 sudo npm install
-sudo nodemon
+sudo pm2 start app.js --watch
