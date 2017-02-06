@@ -1,2 +1,2 @@
 sudo npm install
-nodemon
+sudo nodemon
