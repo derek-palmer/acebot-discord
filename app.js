@@ -29,7 +29,8 @@ acebot.on("guildCreate", guild => {
 acebot.on("presenceUpdate", (oldMember, newMember) => {
     let guild = newMember.guild;
     let playWoW = guild.roles.find("name", "Playing World of Warcraft");
-    if (!playWoW) return;
+    if (!playWoW)
+        return;
     if (newMember.user.presence.game && newMember.user.presence.name === "World of Warcraft") {
         newMember.addRole(playWoW).catch(console.error);
     } else if (!newMember.user.presence.game && newMember.roles.has(playWoW.id)) {
@@ -39,8 +40,10 @@ acebot.on("presenceUpdate", (oldMember, newMember) => {
 
 //Message handler
 acebot.on('message', message => {
-    if (message.author.bot) return;
-    if (!message.content.startsWith(prefix)) return;
+    if (message.author.bot)
+        return;
+    if (!message.content.startsWith(prefix))
+        return;
     let command = message.content.split(" ")[0];
     command = command.slice(prefix.length);
     console.log(command);
@@ -90,7 +93,7 @@ acebot.on('message', message => {
         }, function(err, res) {
             // Res contains gif data!
             var goatURL = res.data.image_url;
-            message.channel.sendFile(goatURL, '', ':goat: | **Here is your random goat:**' ).catch(console.error);
+            message.channel.sendFile(goatURL, '', ':goat: | **Here is your random goat:**').catch(console.error);
         });
     }
     //Random cat gif
@@ -101,16 +104,16 @@ acebot.on('message', message => {
         }, function(err, res) {
             // Res contains gif data!
             var catURL = res.data.image_url;
-            message.channel.sendFile(catURL, '', ':cat2: | **Here is your random cat:**' ).catch(console.error);
+            message.channel.sendFile(catURL, '', ':cat2: | **Here is your random cat:**').catch(console.error);
         });
     }
     //James Franco Bow Gif
-    if (command === 'bow') {
-            message.channel.sendFile('https://media.giphy.com/media/3aRilV33fWkUw/giphy.gif').catch(console.error);
-    }
+    //if (command === 'bow') {
+        //message.channel.sendFile('https://media.giphy.com/media/3aRilV33fWkUw/giphy.gif').catch(console.error);
+    //}
     //Steve Brule - Bringo Gif
     if (command === 'bringo') {
-            message.channel.sendFile('https://media.giphy.com/media/xLsaBMK6Mg8DK/giphy.gif').catch(console.error);
+        message.channel.sendFile('https://media.giphy.com/media/xLsaBMK6Mg8DK/giphy.gif').catch(console.error);
     }
 }); //End message handler
 
