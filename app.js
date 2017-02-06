@@ -93,7 +93,7 @@ acebot.on('message', message => {
             message.channel.sendFile(goatURL, '', ':goat: | **Here is your random goat:**' ).catch(console.error);
         });
     }
-    //Random goat gif
+    //Random cat gif
     if (command === 'kitteh') {
         // Search with options using callback
         giphy.random({
