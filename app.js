@@ -94,10 +94,10 @@ acebot.on('message', message => {
         });
     }
     //Random cat gif
-    if (command === 'kitteh') {
+    if (command === 'kitten') {
         // Search with options using callback
         giphy.random({
-            tag: 'cat'
+            tag: 'kitten'
         }, function(err, res) {
             // Res contains gif data!
             var catURL = res.data.image_url;

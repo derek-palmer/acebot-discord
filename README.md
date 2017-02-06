@@ -33,3 +33,6 @@ Nodemon will keep wait for changes to the file system and automatically restart 
 
 !pong - Sends "ping" back to user
 !bitcoin - Responds with current USD market price of bitcoin
+!goat - Responds with random goat gif
+!kitten - Responds with random kitten gif
+!helpme - Bot help
