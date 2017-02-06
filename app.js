@@ -104,6 +104,16 @@ acebot.on('message', message => {
             message.channel.sendFile(catURL, '', ':cat2: | **Here is your random cat:**' ).catch(console.error);
         });
     }
+    //James Franco Bow Gif
+    if (command === 'bow') {
+            message.channel.sendFile('https://media.giphy.com/media/3aRilV33fWkUw/giphy.gif').catch(console.error);
+        });
+    }
+    //Steve Brule - Bringo Gif
+    if (command === 'bringo') {
+            message.channel.sendFile('https://media.giphy.com/media/xLsaBMK6Mg8DK/giphy.gif').catch(console.error);
+        });
+    }
 }); //End message handler
 
 acebot.login(process.env.LOGIN_TOKEN);
