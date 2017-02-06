@@ -93,6 +93,17 @@ acebot.on('message', message => {
             message.channel.sendFile(goatURL, '', ':goat: | **Here is your random goat:**' ).catch(console.error);
         });
     }
+    //Random goat gif
+    if (command === 'kitteh') {
+        // Search with options using callback
+        giphy.random({
+            tag: 'cat'
+        }, function(err, res) {
+            // Res contains gif data!
+            var catURL = res.data.image_url;
+            message.channel.sendFile(catURL, '', ':cat2: | **Here is your random cat:**' ).catch(console.error);
+        });
+    }
 }); //End message handler
 
 acebot.login(process.env.LOGIN_TOKEN);
