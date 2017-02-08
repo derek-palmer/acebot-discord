@@ -115,6 +115,10 @@ acebot.on('message', message => {
     if (command === 'bringo') {
         message.channel.sendFile('https://media.giphy.com/media/xLsaBMK6Mg8DK/giphy.gif').catch(console.error);
     }
+    //Triggered Gif
+    if (command === 'triggered') {
+        message.channel.sendFile('https://media.giphy.com/media/vk7VesvyZEwuI/giphy.gif').catch(console.error);
+    }
 }); //End message handler
 
 acebot.login(process.env.LOGIN_TOKEN);
