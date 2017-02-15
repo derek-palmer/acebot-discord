@@ -31,8 +31,15 @@ Nodemon will keep wait for changes to the file system and automatically restart 
 
 ##Commands (work in progress):
 
-!pong - Sends "ping" back to user
-!bitcoin - Responds with current USD market price of bitcoin
-!goat - Responds with random goat gif
-!kitten - Responds with random kitten gif
-!helpme - Bot help
+*   !pong - Sends "ping" back to user
+*   !bitcoin - Responds with current USD market price of bitcoin
+*   !goat - Responds with random goat gif
+*   !kitten - Responds with random kitten gif
+*   !helpme - Bot help
+*   !add - Adds numbers
+*   !foo - Reponds with bar!
+*   !triggered - Responds with favorite triggered gif.
+
+If you're interested in what's next in the Acebot development queue, request permission to the Trello board:
+
+https://trello.com/b/rQIyjvX8/acebot
