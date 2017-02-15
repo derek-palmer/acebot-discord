@@ -45,7 +45,7 @@ acebot.on('message', message => {
     if (!message.content.startsWith(prefix))
         return;
     let command = message.content.split(" ")[0];
-    command = command.slice(prefix.length);
+    command = command.slice(prefix.length).toLowerCase();
     console.log(command);
 
     //Add numbas - do maths
