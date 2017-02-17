@@ -1,5 +1,9 @@
 /*jshint esversion: 6 */
-'use strict';
+(function () {
+   "use strict";
+   // this function is strict...
+}());
+
 require('dotenv').config();
 var request = require('request');
 var giphy = require('giphy-api')();
