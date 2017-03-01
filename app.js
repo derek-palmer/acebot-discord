@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
-(function () {
-   "use strict";
-   // this function is strict...
+(function() {
+    "use strict";
+    // this function is strict...
 }());
 
 require('dotenv').config();
@@ -16,30 +16,6 @@ const prefix = config.prefix;
 //Notify when ready
 acebot.on('ready', () => {
     console.log('I am ready, gimmie some commands!!');
-});
-
-//Welcome new user and mention them
-acebot.on("guildMemberAdd", member => {
-    let guild = member.guild;
-    guild.defaultChannel.sendMessage(`Welcome to the Aceholes! ${member.user}`);
-});
-
-//Log when bot is added to new discord server
-acebot.on("guildCreate", guild => {
-    console.log(`New guild added : ${guild.name}, owned by ${guild.owner.user.username}`);
-});
-
-//Give role when playing World of Warcraft - BROKEN
-acebot.on("presenceUpdate", (oldMember, newMember) => {
-    let guild = newMember.guild;
-    let playWoW = guild.roles.find("name", "Playing World of Warcraft");
-    if (!playWoW)
-        return;
-    if (newMember.user.presence.game && newMember.user.presence.name === "World of Warcraft") {
-        newMember.addRole(playWoW).catch(console.error);
-    } else if (!newMember.user.presence.game && newMember.roles.has(playWoW.id)) {
-        newMember.removeRole(playWow).catch(console.error);
-    }
 });
 
 //Message handler
@@ -107,14 +83,10 @@ acebot.on('message', message => {
             tag: 'kitten'
         }, function(err, res) {
             // Res contains gif data!
-            var catURL = res.data.image_url;
-            message.channel.sendFile(catURL, '', ':cat2: | **Here is your random cat:**').catch(console.error);
+            var kittenURL = res.data.image_url;
+            message.channel.sendFile(kittenURL, '', ':cat2: | **Here is your random kitten:**').catch(console.error);
         });
     }
-    //James Franco Bow Gif
-    //if (command === 'bow') {
-        //message.channel.sendFile('https://media.giphy.com/media/3aRilV33fWkUw/giphy.gif').catch(console.error);
-    //}
     //Steve Brule - Bringo Gif
     if (command === 'bringo') {
         message.channel.sendFile('https://media.giphy.com/media/xLsaBMK6Mg8DK/giphy.gif').catch(console.error);
