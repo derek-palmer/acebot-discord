@@ -1,8 +1,13 @@
 var assert = require('assert');
-describe('Array', function() {
-  describe('#indexOf()', function() {
-    it('should return -1 when the value is not present', function() {
-      assert.equal(-1, [1,2,3].indexOf(4));
+
+describe('Commands', function() {
+  describe('!helpme', function() {
+    it('should return help text', function() {
+      var command = 'helpme'
+      if (command === 'helpme') {
+           var message = "help? You don't need help.";
+      }
+      assert.equal(message, "help? You don't need help.");
     });
   });
 });
