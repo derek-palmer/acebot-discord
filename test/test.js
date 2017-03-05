@@ -53,7 +53,7 @@ describe('Commands', function() {
                         console.log(body); //Parse JSON Result
                         USD = result.USD.last; //Set USD variable to the latest USD bitcoin price
                         console.log(USD); //Show price in console
-                        message.reply(`the current Bitcoin market price is: $ ${USD} USD`); //Send price to user that requested price
+                        message = `the current Bitcoin market price is: $ ${USD} USD`; //Send price to user that requested price
                 });
             }
             assert.equal(message, `the current Bitcoin market price is: $ ${USD} USD` );
