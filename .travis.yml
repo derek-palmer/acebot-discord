@@ -7,7 +7,6 @@ cache:
   - node_modules
 install:
 - npm install
-script:
 - mocha
 deploy:
 - provider: s3
