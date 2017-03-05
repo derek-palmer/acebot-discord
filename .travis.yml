@@ -7,8 +7,7 @@ cache:
   - node_modules
 install:
 - npm install
-script:
-- npm test
+- mocha --timeout 5s
 deploy:
 - provider: s3
   access_key_id: $AWS_ACCESS_KEY

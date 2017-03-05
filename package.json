@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/derek-palmer/acebot-discord#readme",
   "dependencies": {
+    "chai": "^3.5.0",
+    "chai-webdriver": "^1.2.0",
     "discord.js": "^11.0.0",
     "dotenv": "^4.0.0",
     "giphy-api": "^1.2.3",
@@ -27,6 +29,8 @@
     "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
     "pm2": "^2.4.0",
-    "request": "^2.79.0"
+    "request": "^2.79.0",
+    "should": "^11.2.0",
+    "supertest": "^3.0.0"
   }
 }
