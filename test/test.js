@@ -1,5 +1,10 @@
 /*jshint esversion: 6 */
 var assert = require('assert');
+var request = require('request');
+var giphy = require('giphy-api')();
+
+const Discord = require('discord.js');
+const acebot = new Discord.Client();
 
 describe('Commands', function() {
     describe('!add', function() {
@@ -39,12 +44,19 @@ describe('Commands', function() {
         it('should return current bitcoin market price', function() {
             var command = 'bitcoin';
             var message;
+            var result;
             var USD;
             if (command === 'bitcoin') {
-                USD = 1100;
-                message = `the current Bitcoin market price is: $ ${USD} USD`;
+                request('https://blockchain.info/ticker', function(error, response, body) {
+                        console.log(body); //Show output in JSON
+                        result = JSON.parse(body);
+                        console.log(body); //Parse JSON Result
+                        USD = result.USD.last; //Set USD variable to the latest USD bitcoin price
+                        console.log(USD); //Show price in console
+                        message.reply(`the current Bitcoin market price is: $ ${USD} USD`); //Send price to user that requested price
+                });
             }
-            assert.equal(message, `the current Bitcoin market price is: $ ${USD} USD`);
+            assert.equal(message, `the current Bitcoin market price is: $ ${USD} USD` );
         });
     });
     describe('!goat', function() {
@@ -53,8 +65,14 @@ describe('Commands', function() {
             var message;
             var goatURL;
             if (command === 'goat') {
-                goatURL = 'https://media.giphy.com/media/5K3Vw3jUqwV56/giphy.gif';
-                message = `${goatURL} :goat: | **Here is your random goat:**`;
+                // Search with options using callback
+                giphy.random({
+                    tag: 'goat'
+                }, function(err, res) {
+                    // Res contains gif data!
+                    var goatURL = res.data.image_url;
+                    message.channel.sendFile(goatURL, '', ':goat: | **Here is your random goat:**').catch(console.error);
+                });
             }
             assert.equal(message, `${goatURL} :goat: | **Here is your random goat:**`);
         });
