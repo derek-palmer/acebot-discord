@@ -8,7 +8,7 @@ cache:
 install:
 - npm install
 script:
-- npm test
+- mocha
 deploy:
 - provider: s3
   access_key_id: $AWS_ACCESS_KEY

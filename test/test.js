@@ -68,8 +68,8 @@ describe('Commands', function() {
       it('should return 200 from giphy api', function() {
           var command = 'goat';
           if (command === 'goat') {
-              //call bitcoin api
-              bitcoinAPI
+              //call giphy api
+              giphyAPI
                   .get("/")
                   .expect("Content-type", /json/)
                   .expect(200)
@@ -87,8 +87,8 @@ describe('Commands', function() {
       it('should return 200 from giphy api', function() {
           var command = 'kitten';
           if (command === 'kitten') {
-              //call bitcoin api
-              bitcoinAPI
+              //call giphy api
+              giphyAPI
                   .get("/")
                   .expect("Content-type", /json/)
                   .expect(200)
