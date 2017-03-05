@@ -1,5 +1,10 @@
 /*jshint esversion: 6 */
 var assert = require('assert');
+var supertest = require("supertest");
+var should = require("should");
+
+var bitcoinAPI = supertest.agent("https://blockchain.info/ticker");
+var giphyAPI = supertest.agent("http://api.giphy.com/v1/gifs/search");
 
 
 describe('Commands', function() {
@@ -37,38 +42,65 @@ describe('Commands', function() {
         });
     });
     describe('!bitcoin', function() {
-        it('should return current bitcoin market price', function() {
+        it('should return 200 from bitcoin api', function() {
             var command = 'bitcoin';
             var message;
             var result;
             var USD;
             if (command === 'bitcoin') {
-
+                //call bitcoin api
+                bitcoinAPI
+                    .get("/")
+                    .expect("Content-type", /json/)
+                    .expect(200)
+                    .end(function(err, res) {
+                        // HTTP status should be 200
+                        res.status.should.equal(200);
+                        // Error key should be false.
+                        res.body.error.should.equal(false);
+                        done();
+                    });
             }
-            assert.equal(message, `the current Bitcoin market price is: $ ${USD} USD` );
         });
     });
-    describe('!goat', function() {
-        it('should return a goat gif', function() {
-            var command = 'goat';
-            var message;
-            var goatURL;
-            if (command === 'goat') {
 
-            }
-            assert.equal(message, `${goatURL} :goat: | **Here is your random goat:**`);
-        });
+    describe('!goat', function() {
+      it('should return 200 from giphy api', function() {
+          var command = 'goat';
+          if (command === 'goat') {
+              //call bitcoin api
+              bitcoinAPI
+                  .get("/")
+                  .expect("Content-type", /json/)
+                  .expect(200)
+                  .end(function(err, res) {
+                      // HTTP status should be 200
+                      res.status.should.equal(200);
+                      // Error key should be false.
+                      res.body.error.should.equal(false);
+                      done();
+                  });
+          }
+      });
     });
     describe('!kitten', function() {
-        it('should return a kitten gif', function() {
-            var command = 'kitten';
-            var message;
-            var kittenURL;
-            if (command === 'kitten') {
-
-            }
-            assert.equal(message, `${kittenURL} :cat2: | **Here is your random kitten:**`);
-        });
+      it('should return 200 from giphy api', function() {
+          var command = 'kitten';
+          if (command === 'kitten') {
+              //call bitcoin api
+              bitcoinAPI
+                  .get("/")
+                  .expect("Content-type", /json/)
+                  .expect(200)
+                  .end(function(err, res) {
+                      // HTTP status should be 200
+                      res.status.should.equal(200);
+                      // Error key should be false.
+                      res.body.error.should.equal(false);
+                      done();
+                  });
+          }
+      });
     });
     describe('!bringo', function() {
         it('should return steve brule bringo gif', function() {
