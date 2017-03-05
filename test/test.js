@@ -1,10 +1,9 @@
 /*jshint esversion: 6 */
 var assert = require('assert');
-var supertest = require("supertest");
-var should = require("should");
-
-var bitcoinAPI = supertest.agent("https://blockchain.info/ticker");
-var giphyAPI = supertest.agent("http://api.giphy.com/v1/gifs/search");
+var should = require('chai').should(),
+    supertest = require('supertest'),
+    bitcoinAPI = supertest('https://blockchain.info/ticker'),
+    giphyAPI = supertest('http://api.giphy.com/v1/gifs/search');
 
 
 describe('Commands', function() {
@@ -42,22 +41,27 @@ describe('Commands', function() {
         });
     });
     describe('!bitcoin', function() {
-        it('should return 200 from bitcoin api', function() {
+        it('responds with json, 200 code and no errors', function(done) {
             var command = 'bitcoin';
-            var message;
-            var result;
-            var USD;
             if (command === 'bitcoin') {
-                //call bitcoin api
-                bitcoinAPI
-                    .get("/")
-                    .expect("Content-type", /json/)
+                bitcoinAPI.get('')
                     .expect(200)
+                    .expect('Content-Type', /json/)
                     .end(function(err, res) {
-                        // HTTP status should be 200
+                        if (err) return done(err);
                         res.status.should.equal(200);
-                        // Error key should be false.
-                        res.body.error.should.equal(false);
+                        done();
+                    });
+            }
+        });
+        it('responds with 404', function(done) {
+            var command = 'bitcoin';
+            if (command === 'bitcoin') {
+                bitcoinAPI.get('/')
+                    .expect(404)
+                    .end(function(err, res) {
+                        if (err) return done(err);
+                        res.status.should.equal(404);
                         done();
                     });
             }
@@ -65,42 +69,16 @@ describe('Commands', function() {
     });
 
     describe('!goat', function() {
-      it('should return 200 from giphy api', function() {
-          var command = 'goat';
-          if (command === 'goat') {
-              //call giphy api
-              giphyAPI
-                  .get("/")
-                  .expect("Content-type", /json/)
-                  .expect(200)
-                  .end(function(err, res) {
-                      // HTTP status should be 200
-                      res.status.should.equal(200);
-                      // Error key should be false.
-                      res.body.error.should.equal(false);
-                      done();
-                  });
-          }
-      });
+        it('should return 200 from giphy api', function() {
+            var command = 'goat';
+            if (command === 'goat') {}
+        });
     });
     describe('!kitten', function() {
-      it('should return 200 from giphy api', function() {
-          var command = 'kitten';
-          if (command === 'kitten') {
-              //call giphy api
-              giphyAPI
-                  .get("/")
-                  .expect("Content-type", /json/)
-                  .expect(200)
-                  .end(function(err, res) {
-                      // HTTP status should be 200
-                      res.status.should.equal(200);
-                      // Error key should be false.
-                      res.body.error.should.equal(false);
-                      done();
-                  });
-          }
-      });
+        it('should return 200 from giphy api', function() {
+            var command = 'kitten';
+            if (command === 'kitten') {}
+        });
     });
     describe('!bringo', function() {
         it('should return steve brule bringo gif', function() {
