@@ -47,7 +47,7 @@ describe('Commands', function() {
                 bitcoinAPI.get('')
                     .expect(200)
                     .expect('Content-Type', /json/)
-                    .end(function(err, res) {
+                    .end((err, res, body) => {
                         if (err) return done(err);
                         res.status.should.equal(200);
                         done();
@@ -59,7 +59,7 @@ describe('Commands', function() {
             if (command === 'bitcoin') {
                 bitcoinAPI.get('/')
                     .expect(404)
-                    .end(function(err, res) {
+                    .end((err, res, body) => {
                         if (err) return done(err);
                         res.status.should.equal(404);
                         done();
