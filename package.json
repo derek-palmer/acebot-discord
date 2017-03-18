@@ -22,10 +22,11 @@
   "dependencies": {
     "discord.js": "^11.0.0",
     "dotenv": "^4.0.0",
+    "forever": "^0.15.3",
+    "forever-monitor": "^1.7.1",
     "giphy-api": "^1.2.3",
     "jshint": "^2.9.4",
     "mocha": "^3.2.0",
-    "nodemon": "^1.11.0",
     "pm2": "^2.4.0",
     "request": "^2.79.0"
   }
