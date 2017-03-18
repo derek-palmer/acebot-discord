@@ -1,9 +1,10 @@
 /*jshint esversion: 6 */
+const Discord = require('discord.js');
 var assert = require('assert');
 var should = require('chai').should(),
     supertest = require('supertest'),
-    bitcoinAPI = supertest('https://blockchain.info/ticker'),
-    giphyAPI = supertest('http://api.giphy.com/v1/gifs/search');
+    bitcoinAPI = supertest('https://blockchain.info/ticker');
+var giphyAPI = require('giphy-api')();
 
 
 describe('Commands', function() {
@@ -68,18 +69,42 @@ describe('Commands', function() {
         });
     });
 
-    describe('!goat', function() {
-        it('should return 200 from giphy api', function() {
-            var command = 'goat';
-            if (command === 'goat') {}
-        });
+describe('!goat', function() {
+    it('should return 200 from giphy api', function() {
+        var command = 'goat';
+        if (command === 'goat') {
+            // Search with options using callback
+            giphyAPI.random({
+                tag: 'goat'
+            }, function(err, res) {
+                res.expect(200).end((err, res, body) => {
+                    if (err)
+                        return done(err);
+                    res.status.should.eqaul(200);
+                    done();
+                });
+            });
+        }
     });
-    describe('!kitten', function() {
-        it('should return 200 from giphy api', function() {
-            var command = 'kitten';
-            if (command === 'kitten') {}
-        });
+});
+describe('!kitten', function() {
+    it('should return 200 from giphy api', function() {
+        var command = 'kitten';
+        if (command === 'kitten') {
+            // Search with options using callback
+            giphyAPI.random({
+                tag: 'kitten'
+            }, function(err, res) {
+                res.expect(200).end((err, res, body) => {
+                    if (err)
+                        return done(err);
+                    res.status.should.eqaul(200);
+                    done();
+                });
+            });
+        }
     });
+});
     describe('!bringo', function() {
         it('should return steve brule bringo gif', function() {
             var command = 'bringo';
