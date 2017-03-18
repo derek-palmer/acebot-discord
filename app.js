@@ -100,6 +100,17 @@ acebot.on('message', message => {
         message.channel.sendFile('assets/bow.gif').catch(console.error);
     }
 
+    if (command === 'brule'){
+        // Search with options using callback
+        giphy.random({
+            tag: 'steve brule'
+        }, function(err, res) {
+            // Res contains gif data!
+            var goatURL = res.data.image_url;
+            message.channel.sendFile(goatURL, '', '**Here is your random Steve Brule gif:').catch(console.error);
+        });
+    }
+
 
 
 
