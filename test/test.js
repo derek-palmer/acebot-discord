@@ -125,4 +125,14 @@ describe('!kitten', function() {
             assert.equal(message, "https://media.giphy.com/media/vk7VesvyZEwuI/giphy.gif");
         });
     });
+    describe('!hue', function() {
+        it('should return hue gif', function() {
+            var command = 'hue';
+            var message;
+            if (command === 'hue') {
+                message = "https://media.giphy.com/media/YwOFosmTM0Vag/giphy.gif";
+            }
+            assert.equal(message, "https://media.giphy.com/media/YwOFosmTM0Vag/giphy.gif");
+        });
+    });
 });
