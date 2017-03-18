@@ -95,6 +95,25 @@ acebot.on('message', message => {
     if (command === 'triggered') {
         message.channel.sendFile('https://media.giphy.com/media/vk7VesvyZEwuI/giphy.gif').catch(console.error);
     }
+    //James Franco Bow Gif
+    if (command === 'bow') {
+        message.channel.sendFile('assets/bow.gif').catch(console.error);
+    }
+
+    if (command === 'brule'){
+        // Search with options using callback
+        giphy.random({
+            tag: 'steve brule'
+        }, function(err, res) {
+            // Res contains gif data!
+            var bruleURL = res.data.image_url;
+            message.channel.sendFile(bruleURL, '', '**Here is your random Steve Brule gif:**').catch(console.error);
+        });
+    }
+
+
+
+
 }); //End message handler
 
 acebot.login(process.env.LOGIN_TOKEN);
