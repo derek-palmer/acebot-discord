@@ -106,8 +106,8 @@ acebot.on('message', message => {
             tag: 'steve brule'
         }, function(err, res) {
             // Res contains gif data!
-            var goatURL = res.data.image_url;
-            message.channel.sendFile(goatURL, '', '**Here is your random Steve Brule gif:').catch(console.error);
+            var bruleURL = res.data.image_url;
+            message.channel.sendFile(bruleURL, '', '**Here is your random Steve Brule gif:**').catch(console.error);
         });
     }
 
