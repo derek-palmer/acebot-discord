@@ -100,7 +100,7 @@ acebot.on('message', message => {
         message.channel.sendFile('assets/bow.gif').catch(console.error);
     }
     //Random Steve Brule gif
-    if (command === 'brule'){
+    if (command === 'brule') {
         // Search with options using callback
         giphy.random({
             tag: 'steve brule'
@@ -114,10 +114,6 @@ acebot.on('message', message => {
     if (command === 'hue') {
         message.channel.sendFile('https://media.giphy.com/media/YwOFosmTM0Vag/giphy.gif').catch(console.error);
     }
-
-
-
-
 }); //End message handler
 
 acebot.login(process.env.LOGIN_TOKEN);
