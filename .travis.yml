@@ -2,17 +2,19 @@ language: node_js
 node_js:
 - "stable"
 sudo: false
+services:
+- docker
 cache:
   directories:
   - node_modules
 before_install:
-  - pip install --user awscli
-  - export PATH=$PATH:$HOME/.local/bin
+- pip install --user awscli
+- export PATH=$PATH:$HOME/.local/bin
 test:
-  - npm install
-  - mocha --timeout 5s
+- npm install
+- mocha --timeout 5s
 script:
-  - eval $(aws ecr get-login --region us-east-1)
-  - docker-compose build
-  - docker tag acebot:latest 253112403313.dkr.ecr.us-east-1.amazonaws.com/acebot:latest
-  - docker push 253112403313.dkr.ecr.us-east-1.amazonaws.com/acebot:latest
+- eval $(aws ecr get-login --region us-east-1)
+- docker-compose build
+- docker tag acebot:latest 253112403313.dkr.ecr.us-east-1.amazonaws.com/acebot:latest
+- docker push 253112403313.dkr.ecr.us-east-1.amazonaws.com/acebot:latest
