@@ -5,30 +5,14 @@ sudo: false
 cache:
   directories:
   - node_modules
-install:
-- npm install
-- mocha --timeout 5s
-deploy:
-- provider: s3
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY
-  local_dir: dpl_cd_upload
-  skip_cleanup: true
-  on: &2
-    repo: derek-palmer/acebot-discord
-  bucket: acebot-discord
-  region: us-east-1
-- provider: codedeploy
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY
-  bucket: acebot-discord
-  key: latest.zip
-  bundle_type: zip
-  application: acebot-discord
-  deployment_group: ACEBOT
-  region: us-east-1
-  on: *2
+before_install:
+  - pip install --user awscli
+  - export PATH=$PATH:$HOME/.local/bin
+test:
+  - npm install
+  - mocha --timeout 5s
 script:
-  - zip -r latest *
-  - mkdir -p dpl_cd_upload
-  - mv latest.zip dpl_cd_upload/latest.zip
+  - eval $(aws ecr get-login --region us-east-1)
+  - docker-compose build
+  - docker tag acebot:latest 253112403313.dkr.ecr.us-east-1.amazonaws.com/acebot:latest
+  - docker push 253112403313.dkr.ecr.us-east-1.amazonaws.com/acebot:latest
