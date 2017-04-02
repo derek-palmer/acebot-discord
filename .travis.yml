@@ -1,24 +1,34 @@
 language: node_js
 node_js:
-- stable
+- "stable"
 sudo: false
-services:
-- docker
 cache:
   directories:
   - node_modules
-before_install:
-- pip install --user awscli
-- export PATH=$PATH:$HOME/.local/bin
-test:
+install:
 - npm install
 - mocha --timeout 5s
+deploy:
+- provider: s3
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  local_dir: dpl_cd_upload
+  skip_cleanup: true
+  on: &2
+    repo: derek-palmer/acebot-discord
+  bucket: acebot-discord
+  region: us-east-1
+- provider: codedeploy
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  bucket: acebot-discord
+  key: latest.zip
+  bundle_type: zip
+  application: acebot-discord
+  deployment_group: ACEBOT
+  region: us-east-1
+  on: *2
 script:
-- eval $(aws ecr get-login --region us-east-1)
-- docker build -t acebot .
-- docker tag acebot:latest 253112403313.dkr.ecr.us-east-1.amazonaws.com/acebot:latest
-- docker push 253112403313.dkr.ecr.us-east-1.amazonaws.com/acebot:latest
-env:
-  global:
-  - secure: utaz/QNv/ps7sxRaZPXtLTUNUb/UWe92W0wrKeMf796GkEpjriGCQ63pmohalM8jX8uxw2ITPwvetB+siIv89J8/dtVLADd1h11umGvdieB1VRWdeX2250/NCOdS4y/xylGzNx4vAVlOM9FeUVQbs5cXkasvmGckLjZVK2QFE1zZbEoUvP6mCQYlxM+xxrfhvmVnxU9kVEBGrwIM5MmhKoLtqvZUaOoR4nmXu2BzNKaKqSOKcxtbFZPc5SUBuRO/9QQcXzp3v8AYFtRBlxYvaPyBB/a30ywhNFab5gYMA9PBX4dn8yC3wCOxKmsIb/S6erhgq5NEm19TeT7h1IQWb8fRZ02N1y8MeCz1Qf9Cctm/7+Zi0kgD4/r5OkTa6CQKPSS2iy3QjiPS4Xv9rziqL81ep93onkSKe1zXCxoJtGxI0M3QzPZUclgZEOE4hQjyz+47d6vrazgziR7XxC+1FJ6uaZdjYZryV3sXQ4E5Foj0554TWTi1eIsrt8l9XJQRYJhwauzR2mtHec6Ou2ntOHSh2TPcfuLtq+PYfApxevAhlJnGjLwb9u10BsMKeUOizKXbJ4llpzkcTOoFp2JwBTwptMW2LevU5E/Gc66UI+2vpYMs6H9ZbLoAW5bz+tqwXmu67tiORTjFAaWQjuJyA9qKOwQHzeJzZ6JX1H31ZRk=
-  - secure: qV/ygGM6o1mJgr6nRH3DBeYSFsuCqVWZtf6vq8DGMm5fzVwVjCmDGJoBJX+GZLZb9HaErlAmYQjioMHbs4TcJ79mwTOnfMpFyL/LZweaabGcsiDRpEwHC21L3km4VqwW+9T6uSXnSX8UhIthRj/H+SgxzLYZlWxvRLqkFXo8vNhXYYU/fcFRLVdvLtV9GCOqvG7zht7O03XueFkLNtDEmvhV8xImjP7mOqlvqOKVaq8zaYT6Do8qi+2fHxuqkxu98T8KkshWNFEg46nHkHXkICRW9sC8TEFVzEz8mhupjPS9w4Vjrwu3unvG8Lb802H05UKkO3Pr8vD3ow6buQ3CaKsd9JuMTegqxPuLntHrOJFzGuMyLrxfNpQbfkc/VdxGC1W3nWn4QsOmeBzh5WQghCzrZN9aBE3SzUZtMgk0vYxbb6EoY8NWeqMqhjAmgVrZ/ess0H0pvEfXXYa60XHamQQiNZl2l5vg4AMeWuxyAQIdV7APWBu7YhUQk6TnNT0z5woudyhDwYKTyKcvZjKR47n8/KZB1w3PE8NaUT8/sHEVOqi61eWosicyz5d8/8B2Mm5mD15MJ3iRyYUF7eGVxu9xnaDPJwWYcPFhGSWQlUwxdaVaJ5aQ3j1IJei4TqEsy+V704QvcFgOImDch7IDmilpXUFDdUjbVF6gkJk6R1Q=
+  - zip -r latest *
+  - mkdir -p dpl_cd_upload
+  - mv latest.zip dpl_cd_upload/latest.zip
