@@ -16,5 +16,5 @@ test:
 script:
 - eval $(aws ecr get-login --region us-east-1)
 - docker-compose build
-- docker tag acebot:latest 253112403313.dkr.ecr.us-east-1.amazonaws.com/acebot:latest
+- docker tag acebot 253112403313.dkr.ecr.us-east-1.amazonaws.com/acebot:latest
 - docker push 253112403313.dkr.ecr.us-east-1.amazonaws.com/acebot:latest
