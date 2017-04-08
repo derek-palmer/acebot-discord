@@ -5,7 +5,8 @@ Bot for Discord Server
 
 ### Prerequistes
 
-Docker
+*   Docker
+*   Node.js
 
 ### Clone repo:
 ```
@@ -29,7 +30,6 @@ docker-compose build
 ```
 docker-compose up
 ```
-
 ## Commands (work in progress):
 
 *   !pong - Sends "ping" back to user
