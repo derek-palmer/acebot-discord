@@ -37,7 +37,7 @@ acebot.on('message', message => {
     }
     //Help
     if (command === 'helpme') {
-        message.reply("help? You don't need help.").catch(console.error);
+        message.reply("\n\nCommands:\n\n**!pong** - Sends 'ping' back to user\n\n**!bitcoin** - Responds with current USD market price of bitcoin\n\n**!goat** - Responds with random goat gif\n\n**!kitten** - Responds with random kitten gif\n\n**!helpme** - Bot help\n\n**!add** - Adds numbers; Example '!add 5 5 5' Total = 15 \n\n**!foo** - Responds with 'bar!' if you're an Admin.\n\n**!triggered** - Responds with favorite triggered gif.\n\n**!brule** - Responds with randome Steve Brule gif.\n\n**!bringo** - Responds with favorite Steve Brule bringo gif.\n\n**!bow** - Responds with favorite James Franco bow gif.\n\n**!hue** - Responds with favorite HueHueHue gif.").catch(console.error);
     }
     //Ping - Pong
     if (command === 'pong') {
