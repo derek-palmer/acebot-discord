@@ -3,33 +3,34 @@ Bot for Discord Server
 
 ## Setup
 
-###Clone repo:
+### Prerequistes
+
+Docker
+
+### Clone repo:
 ```
 git clone https://github.com/derek-palmer/acebot-discord.git
 ```
 
-###Install dependencies:
-```
-npm install
-```
-###Your App/Bot, client ID and token can be created here:
+### Your App/Bot, client ID and token can be created here:
 
 https://discordapp.com/developers/applications/me/
 
-###Add your bot to your discord server:
+### Add your bot to your discord server:
 
 https://discordapp.com/oauth2/authorize?&client_id=YOUR_CLIENT_ID_HERE&scope=bot&permissions=0
 
 Add your token to your .env file
 
-##Start app:
+### Build and run docker container:
 ```
-nodemon app.js
+docker-compose build
+```
+```
+docker-compose up
 ```
 
-Nodemon will keep wait for changes to the file system and automatically restart upon any changes.
-
-##Commands (work in progress):
+## Commands (work in progress):
 
 *   !pong - Sends "ping" back to user
 *   !bitcoin - Responds with current USD market price of bitcoin
@@ -37,9 +38,9 @@ Nodemon will keep wait for changes to the file system and automatically restart 
 *   !kitten - Responds with random kitten gif
 *   !helpme - Bot help
 *   !add - Adds numbers
-*   !foo - Reponds with bar!
+*   !foo - Responds with "bar!" if you're an Admin.
 *   !triggered - Responds with favorite triggered gif.
-
-If you're interested in what's next in the Acebot development queue, request permission to the Trello board:
-
-https://trello.com/b/rQIyjvX8/acebot
+*   !brule - Responds with randome Steve Brule gif.
+*   !bringo - Responds with favorite Steve Brule bringo gif.
+*   !bow - Responds with favorite James Franco bow gif.
+*   !hue - Responds with favorite HueHueHue gif.
