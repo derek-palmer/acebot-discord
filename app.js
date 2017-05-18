@@ -5,8 +5,8 @@
 }());
 
 require('dotenv').config();
-var request = require('request');
-var giphy = require('giphy-api')();
+const request = require('request');
+const giphy = require('giphy-api')();
 
 const Discord = require('discord.js');
 const acebot = new Discord.Client();
@@ -56,10 +56,8 @@ acebot.on('message', message => {
     if (command === 'bitcoin') {
         request('https://blockchain.info/ticker', function(error, response, body) {
             if (!error && response.statusCode == 200) {
-                console.log(body); //Show output in JSON
-                var result = JSON.parse(body);
-                console.log(body); //Parse JSON Result
-                var USD = result.USD.last; //Set USD variable to the latest USD bitcoin price
+                const result = JSON.parse(body);
+                const USD = result.USD.last; //Set USD constiable to the latest USD bitcoin price
                 console.log(USD); //Show price in console
                 message.reply(`the current Bitcoin market price is: $ ${USD} USD`).catch(console.error); //Send price to user that requested price
             }
@@ -72,7 +70,7 @@ acebot.on('message', message => {
             tag: 'goat'
         }, function(err, res) {
             // Res contains gif data!
-            var goatURL = res.data.image_url;
+            const goatURL = res.data.image_url;
             message.channel.sendFile(goatURL, '', ':goat: | **Here is your random goat:**').catch(console.error);
         });
     }
@@ -83,7 +81,7 @@ acebot.on('message', message => {
             tag: 'kitten'
         }, function(err, res) {
             // Res contains gif data!
-            var kittenURL = res.data.image_url;
+            const kittenURL = res.data.image_url;
             message.channel.sendFile(kittenURL, '', ':cat2: | **Here is your random kitten:**').catch(console.error);
         });
     }
@@ -106,13 +104,20 @@ acebot.on('message', message => {
             tag: 'steve brule'
         }, function(err, res) {
             // Res contains gif data!
-            var bruleURL = res.data.image_url;
+            const bruleURL = res.data.image_url;
             message.channel.sendFile(bruleURL, '', '**Here is your random Steve Brule gif:**').catch(console.error);
         });
     }
     //HueHueHue Gif
     if (command === 'hue') {
-        message.channel.sendFile('https://media.giphy.com/media/YwOFosmTM0Vag/giphy.gif').catch(console.error);
+        // Search with options using callback
+        giphy.random({
+          tag: 'huehuehue'
+        }, function(err, res){
+          // Res contains gif data!
+          const hueURL = res.data.image_url;
+          message.channel.sendFile(hueURL, '', '**Here is your random HueHueHue gif:**').catch(console.error);
+        });
     }
 }); //End message handler
 
