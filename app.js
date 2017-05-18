@@ -56,9 +56,7 @@ acebot.on('message', message => {
     if (command === 'bitcoin') {
         request('https://blockchain.info/ticker', function(error, response, body) {
             if (!error && response.statusCode == 200) {
-                console.log(body); //Show output in JSON
                 const result = JSON.parse(body);
-                console.log(body); //Parse JSON Result
                 const USD = result.USD.last; //Set USD constiable to the latest USD bitcoin price
                 console.log(USD); //Show price in console
                 message.reply(`the current Bitcoin market price is: $ ${USD} USD`).catch(console.error); //Send price to user that requested price
