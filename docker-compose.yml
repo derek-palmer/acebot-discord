@@ -1,2 +1,4 @@
 acebot:
   build: .
+  env_file:
+    - .env
