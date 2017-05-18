@@ -112,7 +112,14 @@ acebot.on('message', message => {
     }
     //HueHueHue Gif
     if (command === 'hue') {
-        message.channel.sendFile('https://media.giphy.com/media/YwOFosmTM0Vag/giphy.gif').catch(console.error);
+        // Search with options using callback
+        giphy.random({
+          tag: 'huehuehue'
+        }, function(err, res){
+          // Res contains gif data!
+          const hueURL = res.data.image_url;
+          message.channel.sendFile(hueURL, '', '**Here is your random HueHueHue gif:**')
+        })
     }
 }); //End message handler
 
