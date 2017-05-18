@@ -118,8 +118,8 @@ acebot.on('message', message => {
         }, function(err, res){
           // Res contains gif data!
           const hueURL = res.data.image_url;
-          message.channel.sendFile(hueURL, '', '**Here is your random HueHueHue gif:**')
-        })
+          message.channel.sendFile(hueURL, '', '**Here is your random HueHueHue gif:**').catch(console.error);
+        });
     }
 }); //End message handler
 
