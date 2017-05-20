@@ -13,9 +13,15 @@ const acebot = new Discord.Client();
 const config = require("./config.json");
 const prefix = config.prefix;
 
+//Format date for last online
+var dateFormat = require('dateformat');
+var now = new Date();
+var online_now = dateFormat(now, 'shortDate');
+
 //Client Events
-acebot.on('ready', () => {
+acebot.on('ready', (channel) => {
   console.log('I am ready, gimmie some commands!!');
+  acebot.user.setGame(`Last Restart: ${online_now}`).catch(console.error);
 });
 
 acebot.on('disconnect', () =>{
