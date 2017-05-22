@@ -17,11 +17,12 @@ const prefix = config.prefix;
 var dateFormat = require('dateformat');
 var now = new Date();
 var online_now = dateFormat(now, 'shortDate');
+var updated_date = dateFormat(now, 'shortDate') + ' at '  + dateFormat(now, 'shortTime');
 
 //Client Events
-acebot.on('ready', (channel) => {
+acebot.on('ready', () => {
   console.log('I am ready, gimmie some commands!!');
-  acebot.user.setGame(`Last Restart: ${online_now}`).catch(console.error);
+  acebot.user.setStatus('online', 'Last Restart: ${online_now}').catch(console.error);
 });
 
 acebot.on('disconnect', () =>{
@@ -33,18 +34,18 @@ acebot.on('reconnecting', () => {
 });
 
 acebot.on('channelPinsUpdate', (channel, time) => {
-  channel.guild.defaultChannel.sendMessage(`The pins for **${channel.name}** have been updated at ${time}`).catch(console.error);
+  channel.guild.defaultChannel.sendMessage(`The pins for **${channel.name}** have been updated on ${updated_date}`).catch(console.error);
 });
 
 acebot.on('channelCreate', channel => {
   console.log(`A ${channel.type} channel by the name of ${channel.name} was created ${channel.createdAt} with the ID of ${channel.id}`);
-  channel.guild.defaultChannel.sendMessage(`Channel: **${channel.name}** was created`);
-  if (channel.type === 'text') return channel.sendMessage('You successfully created this channel.').catch(console.error);
+  channel.guild.defaultChannel.sendMessage(`Channel: **${channel.name}** was created on ${updated_date}`);
+  if (channel.type === 'text') return channel.sendMessage('You successfully created this channel on ${updated_date}.').catch(console.error);
 });
 
 acebot.on('channelDelete', channel => {
-  console.log(`A ${channel.type} by the name of ${channel.name} was successfully deleted.`);
-  channel.guild.defaultChannel.sendMessage(`Channel: **${channel.name}** was deleted`).catch(console.error);
+  console.log(`A ${channel.type} by the name of ${channel.name} was successfully deleted on ${updated_date}.`);
+  channel.guild.defaultChannel.sendMessage(`Channel: **${channel.name}** was deleted on ${updated_date}`).catch(console.error);
 });
 
 //Message handler
