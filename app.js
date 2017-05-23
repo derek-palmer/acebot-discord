@@ -103,7 +103,7 @@ acebot.on('message', message => {
     }, function(err, res) {
       // Res contains gif data!
       const goatURL = res.data.image_url;
-      message.channel.sendFile(goatURL, '', ':goat: | **Here is your random goat:**').catch(console.error);
+      message.channel.send(goatURL, '', ':goat: | **Here is your random goat:**').catch(console.error);
     });
   }
   //Random cat gif
@@ -114,20 +114,20 @@ acebot.on('message', message => {
     }, function(err, res) {
       // Res contains gif data!
       const kittenURL = res.data.image_url;
-      message.channel.sendFile(kittenURL, '', ':cat2: | **Here is your random kitten:**').catch(console.error);
+      message.channel.send(kittenURL, '', ':cat2: | **Here is your random kitten:**').catch(console.error);
     });
   }
   //Steve Brule - Bringo Gif
   if (command === 'bringo') {
-    message.channel.sendFile('https://media.giphy.com/media/xLsaBMK6Mg8DK/giphy.gif').catch(console.error);
+    message.channel.send('https://media.giphy.com/media/xLsaBMK6Mg8DK/giphy.gif').catch(console.error);
   }
   //Triggered Gif
   if (command === 'triggered') {
-    message.channel.sendFile('https://media.giphy.com/media/vk7VesvyZEwuI/giphy.gif').catch(console.error);
+    message.channel.send('https://media.giphy.com/media/vk7VesvyZEwuI/giphy.gif').catch(console.error);
   }
   //James Franco Bow Gif
   if (command === 'bow') {
-    message.channel.sendFile('assets/bow.gif').catch(console.error);
+    message.channel.send('assets/bow.gif').catch(console.error);
   }
   //Random Steve Brule gif
   if (command === 'brule') {
@@ -137,7 +137,7 @@ acebot.on('message', message => {
     }, function(err, res) {
       // Res contains gif data!
       const bruleURL = res.data.image_url;
-      message.channel.sendFile(bruleURL, '', '**Here is your random Steve Brule gif:**').catch(console.error);
+      message.channel.send(bruleURL, '', '**Here is your random Steve Brule gif:**').catch(console.error);
     });
   }
   //HueHueHue Gif
@@ -148,7 +148,7 @@ acebot.on('message', message => {
     }, function(err, res) {
       // Res contains gif data!
       const hueURL = res.data.image_url;
-      message.channel.sendFile(hueURL, '', '**Here is your random HueHueHue gif:**').catch(console.error);
+      message.channel.send(hueURL, '', '**Here is your random HueHueHue gif:**').catch(console.error);
     });
   }
   //Set status
@@ -166,7 +166,7 @@ acebot.on('message', message => {
       }
       acebot.user.setGame(result).catch(console.error);
     } else {
-      message.channel.sendMessage(`Hah, you noob. You don't have access to that command!`).catch(console.error);
+      message.channel.send(`Hah, you noob. You don't have access to that command!`).catch(console.error);
     }
   }
 
