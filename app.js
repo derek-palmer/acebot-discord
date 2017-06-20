@@ -50,10 +50,12 @@ acebot.on('channelDelete', channel => {
 
 // Message handler
 acebot.on('message', message => {
-    if (message.author.bot)
+    if (message.author.bot) {
         return;
-    if (!message.content.startsWith(prefix))
+    }
+    if (!message.content.startsWith(prefix)) {
         return;
+    }
 
     let args = message.content.split(' ').slice(1);
     let AdminRole = message.guild.roles.find('name', 'Admin');
