@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
 (function() {
-    "use strict";
+    'use strict';
     // this function is strict...
 }());
 
@@ -10,19 +10,19 @@ const giphy = require('giphy-api')();
 
 const Discord = require('discord.js');
 const acebot = new Discord.Client();
-const config = require("./config.json");
+const config = require('./config.json');
 const prefix = config.prefix;
 
-//Format date for last online
+// Format date for last online
 var dateFormat = require('dateformat');
 var now = new Date();
-var online_now = dateFormat(now, 'shortDate');
-var updated_date = dateFormat(now, 'shortDate') + ' at ' + dateFormat(now, 'shortTime');
+var onlineNow = dateFormat(now, 'shortDate');
+var updatedDate = dateFormat(now, 'shortDate') + ' at ' + dateFormat(now, 'shortTime');
 
-//Client Events
+// Client Events
 acebot.on('ready', () => {
     console.log('I am ready, gimmie some commands!!');
-    acebot.user.setStatus('online', 'Last Restart: ${online_now}').catch(console.error);
+    acebot.user.setStatus('online', 'Last Restart: ${onlineNow}').catch(console.error);
 });
 
 acebot.on('disconnect', () => {
@@ -34,50 +34,50 @@ acebot.on('reconnecting', () => {
 });
 
 acebot.on('channelPinsUpdate', (channel, time) => {
-    channel.guild.defaultChannel.sendMessage(`The pins for **${channel.name}** have been updated on ${updated_date}`).catch(console.error);
+    channel.guild.defaultChannel.sendMessage(`The pins for **${channel.name}** have been updated on ${updatedDate}`).catch(console.error);
 });
 
 acebot.on('channelCreate', channel => {
     console.log(`A ${channel.type} channel by the name of ${channel.name} was created ${channel.createdAt} with the ID of ${channel.id}`);
-    channel.guild.defaultChannel.sendMessage(`Channel: **${channel.name}** was created on ${updated_date}`);
-    if (channel.type === 'text') return channel.sendMessage('You successfully created this channel on ${updated_date}.').catch(console.error);
+    channel.guild.defaultChannel.sendMessage(`Channel: **${channel.name}** was created on ${updatedDate}`);
+    if (channel.type === 'text') return channel.sendMessage('You successfully created this channel on ${updatedDate}.').catch(console.error);
 });
 
 acebot.on('channelDelete', channel => {
-    console.log(`A ${channel.type} by the name of ${channel.name} was successfully deleted on ${updated_date}.`);
-    channel.guild.defaultChannel.sendMessage(`Channel: **${channel.name}** was deleted on ${updated_date}`).catch(console.error);
+    console.log(`A ${channel.type} by the name of ${channel.name} was successfully deleted on ${updatedDate}.`);
+    channel.guild.defaultChannel.sendMessage(`Channel: **${channel.name}** was deleted on ${updatedDate}`).catch(console.error);
 });
 
-//Message handler
+// Message handler
 acebot.on('message', message => {
     if (message.author.bot)
         return;
     if (!message.content.startsWith(prefix))
         return;
 
-    let args = message.content.split(" ").slice(1);
-    let AdminRole = message.guild.roles.find("name", "Admin");
+    let args = message.content.split(' ').slice(1);
+    let AdminRole = message.guild.roles.find('name', 'Admin');
     var result = args.join(' ');
 
     let command = message.content.split(" ")[0];
     command = command.slice(prefix.length).toLowerCase();
     console.log(command);
 
-    //Add numbas - do maths
-    if (command === "add") {
+    // Add numbas - do maths
+    if (command === 'add') {
         let numArray = args.map(n => parseInt(n));
         let total = numArray.reduce((p, c) => p + c);
         message.channel.sendMessage(total).catch(console.error);
     }
-    //Help
+    // Help
     if (command === 'helpme') {
         message.reply("\n\nCommands:\n\n**!pong** - Sends 'ping' back to user\n\n**!btc** - Responds with current USD market price of bitcoin\n\n**!eth** - Responds with current USD market price of ethereum\n\n**!goat** - Responds with random goat gif\n\n**!kitten** - Responds with random kitten gif\n\n**!helpme** - Bot help\n\n**!add** - Adds numbers; Example '!add 5 5 5' Total = 15 \n\n**!foo** - Responds with 'bar!' if you're an Admin.\n\n**!triggered** - Responds with favorite triggered gif.\n\n**!brule** - Responds with randome Steve Brule gif.\n\n**!bringo** - Responds with favorite Steve Brule bringo gif.\n\n**!bow** - Responds with favorite James Franco bow gif.\n\n**!hue** - Responds with favorite HueHueHue gif.").catch(console.error);
     }
-    //Ping - Pong
+    // Ping - Pong
     if (command === 'pong') {
         message.channel.sendMessage(`Ping! \`${Date.now() - message.createdTimestamp} ms\``).catch(console.error);
     }
-    //Foo - Bar - locked down to Admin Role only
+    // Foo - Bar - locked down to Admin Role only
     if (command === 'foo') {
         if (message.member.roles.has(AdminRole.id)) {
             message.channel.sendMessage('bar!').catch(console.error);
@@ -85,27 +85,37 @@ acebot.on('message', message => {
             message.channel.sendMessage(`Hah, you noob. You don't have access to that command!`).catch(console.error);
         }
     }
-    //Bitcoin
+    // Bitcoin
     if (command === 'btc') {
         request('https://api.coinbase.com/v2/prices/BTC-USD/spot', function(error, response, body) {
-            if (!error && response.statusCode == 200) {
+            if (!error && response.statusCode === 200) {
                 const result = JSON.parse(body);
-                const USD = result.data.amount; //Set USD to the latest USD bitcoin price
-                message.reply(`the current Bitcoin market price is: $ ${USD} USD`).catch(console.error); //Send price to user that requested price
+                const USD = result.data.amount; // Set USD to the latest USD bitcoin price
+                message.reply(`the current Bitcoin market price is: $ ${USD} USD`).catch(console.error); // Send price to user that requested price
             }
         });
     }
-    //Ethereum
+    // Litecoin
+    if (command === 'ltc') {
+        request('https://api.coinbase.com/v2/prices/LTC-USD/spot', function(error, response, body) {
+            if (!error && response.statusCode === 200) {
+                const result = JSON.parse(body);
+                const USD = result.data.amount; // Set USD to the latest USD litecoin price
+                message.reply(`the current Litecoin market price is: $ ${USD} USD`).catch(console.error); // Send price to user that requested price
+            }
+        });
+    }
+    // Ethereum
     if (command === 'eth') {
         request(' https://api.coinbase.com/v2/prices/ETH-USD/spot', function(error, response, body) {
-            if (!error && response.statusCode == 200) {
+            if (!error && response.statusCode === 200) {
                 const result = JSON.parse(body);
-                const USD = result.data.amount; //Set USD to the latest USD bitcoin price
-                message.reply(`the current Ethereum market price is: $ ${USD} USD`).catch(console.error); //Send price to user that requested price
+                const USD = result.data.amount; // Set USD to the latest USD ethereum price
+                message.reply(`the current Ethereum market price is: $ ${USD} USD`).catch(console.error); // Send price to user that requested price
             }
         });
     }
-    //Random goat gif
+    // Random goat gif
     if (command === 'goat') {
         // Search with options using callback
         giphy.random({
@@ -116,7 +126,7 @@ acebot.on('message', message => {
             message.channel.send(goatURL, '', ':goat: | **Here is your random goat:**').catch(console.error);
         });
     }
-    //Random cat gif
+    // Random cat gif
     if (command === 'kitten') {
         // Search with options using callback
         giphy.random({
@@ -161,7 +171,7 @@ acebot.on('message', message => {
             message.channel.send(hueURL, '', '**Here is your random HueHueHue gif:**').catch(console.error);
         });
     }
-    //Set status
+    // Set status
     if (command === 'setstatus') {
         if (!result) {
             result = 'online';
@@ -179,7 +189,6 @@ acebot.on('message', message => {
             message.channel.send(`Hah, you noob. You don't have access to that command!`).catch(console.error);
         }
     }
-
-}); //End message handler
+}); // End message handler
 
 acebot.login(process.env.LOGIN_TOKEN);
