@@ -7,10 +7,10 @@
 require('dotenv').config();
 const request = require('request');
 const giphy = require('giphy-api')();
-
 const Discord = require('discord.js');
-const acebot = new Discord.Client();
 const config = require('./config.json');
+
+const acebot = new Discord.Client();
 const prefix = config.prefix;
 
 // Format date for last online
@@ -22,7 +22,7 @@ var updatedDate = dateFormat(now, 'shortDate') + ' at ' + dateFormat(now, 'short
 // Client Events
 acebot.on('ready', () => {
     console.log('I am ready, gimmie some commands!!');
-    acebot.user.setStatus('online', 'Last Restart: ${onlineNow}').catch(console.error);
+    acebot.user.setStatus('online', `Last Restart: ${onlineNow}`).catch(console.error);
 });
 
 acebot.on('disconnect', () => {
@@ -57,18 +57,18 @@ acebot.on('message', message => {
         return;
     }
 
-    let args = message.content.split(' ').slice(1);
-    let AdminRole = message.guild.roles.find('name', 'Admin');
-    var result = args.join(' ');
+    const args = message.content.split(' ').slice(1);
+    const AdminRole = message.guild.roles.find('name', 'Admin');
+    let result = args.join(' ');
 
-    let command = message.content.split(" ")[0];
+    let command = message.content.split(' ')[0];
     command = command.slice(prefix.length).toLowerCase();
     console.log(command);
 
     // Add numbas - do maths
     if (command === 'add') {
-        let numArray = args.map(n => parseInt(n));
-        let total = numArray.reduce((p, c) => p + c);
+        const numArray = args.map(n => parseInt(n));
+        const total = numArray.reduce((p, c) => p + c);
         message.channel.sendMessage(total).catch(console.error);
     }
     // Help
