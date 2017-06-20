@@ -91,8 +91,8 @@ acebot.on('message', message => {
     if (command === 'btc') {
         request('https://api.coinbase.com/v2/prices/BTC-USD/spot', function(error, response, body) {
             if (!error && response.statusCode === 200) {
-                const result = JSON.parse(body);
-                const USD = result.data.amount; // Set USD to the latest USD bitcoin price
+                const btc = JSON.parse(body);
+                const USD = btc.data.amount; // Set USD to the latest USD bitcoin price
                 message.reply(`the current Bitcoin market price is: $ ${USD} USD`).catch(console.error); // Send price to user that requested price
             }
         });
@@ -101,8 +101,8 @@ acebot.on('message', message => {
     if (command === 'ltc') {
         request('https://api.coinbase.com/v2/prices/LTC-USD/spot', function(error, response, body) {
             if (!error && response.statusCode === 200) {
-                const result = JSON.parse(body);
-                const USD = result.data.amount; // Set USD to the latest USD litecoin price
+                const ltc = JSON.parse(body);
+                const USD = ltc.data.amount; // Set USD to the latest USD litecoin price
                 message.reply(`the current Litecoin market price is: $ ${USD} USD`).catch(console.error); // Send price to user that requested price
             }
         });
@@ -111,8 +111,8 @@ acebot.on('message', message => {
     if (command === 'eth') {
         request(' https://api.coinbase.com/v2/prices/ETH-USD/spot', function(error, response, body) {
             if (!error && response.statusCode === 200) {
-                const result = JSON.parse(body);
-                const USD = result.data.amount; // Set USD to the latest USD ethereum price
+                const eth = JSON.parse(body);
+                const USD = eth.data.amount; // Set USD to the latest USD ethereum price
                 message.reply(`the current Ethereum market price is: $ ${USD} USD`).catch(console.error); // Send price to user that requested price
             }
         });
@@ -139,19 +139,19 @@ acebot.on('message', message => {
             message.channel.send(kittenURL, '', ':cat2: | **Here is your random kitten:**').catch(console.error);
         });
     }
-    //Steve Brule - Bringo Gif
+    // Steve Brule - Bringo Gif
     if (command === 'bringo') {
         message.channel.send('https://media.giphy.com/media/xLsaBMK6Mg8DK/giphy.gif').catch(console.error);
     }
-    //Triggered Gif
+    // Triggered Gif
     if (command === 'triggered') {
         message.channel.send('https://media.giphy.com/media/vk7VesvyZEwuI/giphy.gif').catch(console.error);
     }
-    //James Franco Bow Gif
+    // James Franco Bow Gif
     if (command === 'bow') {
         message.channel.send('assets/bow.gif').catch(console.error);
     }
-    //Random Steve Brule gif
+    // Random Steve Brule gif
     if (command === 'brule') {
         // Search with options using callback
         giphy.random({
