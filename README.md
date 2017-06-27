@@ -33,7 +33,9 @@ docker-compose up
 ## Commands (work in progress):
 
 *   !pong - Sends "ping" back to user
-*   !bitcoin - Responds with current USD market price of bitcoin
+*   !btc - Responds with current USD market price of bitcoin
+*   !ltc - Responds with current USD market price of litecoin
+*   !eth - Responds with current USD market price of ethereum
 *   !goat - Responds with random goat gif
 *   !kitten - Responds with random kitten gif
 *   !helpme - Bot help
@@ -43,4 +45,4 @@ docker-compose up
 *   !brule - Responds with randome Steve Brule gif.
 *   !bringo - Responds with favorite Steve Brule bringo gif.
 *   !bow - Responds with favorite James Franco bow gif.
-*   !hue - Responds with favorite HueHueHue gif.
+*   !hue - Responds with random HueHueHue gif.
