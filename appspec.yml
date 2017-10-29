@@ -1,8 +1,0 @@
-version: 0.0
-os: linux
-files:
-  - source: ./
-    destination: /home/ubuntu/ACEBOT
-ApplicationStart:
-    - location: /home/ubuntu/ACEBOT/startApp.sh
-      timeout: 3600
