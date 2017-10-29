@@ -1,4 +1,4 @@
-FROM keymetrics/pm2-docker-alpine
+FROM keymetrics/pm2:latest
 
 # Install base packages
 RUN apk update
