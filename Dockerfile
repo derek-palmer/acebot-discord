@@ -1,4 +1,4 @@
-FROM keymetrics/pm2:latest
+FROM keymetrics/pm2:8
 
 # Install base packages
 RUN apk update
