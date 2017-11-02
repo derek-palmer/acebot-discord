@@ -1,4 +1,11 @@
-acebot:
-  build: .
-  env_file:
+version: '3'
+services:
+  acebot:
+    build: .
+    env_file:
     - .env
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "udp://logs5.papertrailapp.com:45578"
+        tag: "{{.Name}}/{{.ID}}"
