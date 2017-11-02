@@ -149,9 +149,9 @@ acebot.on('message', message => {
     if (command === 'triggered') {
         message.channel.send('https://media.giphy.com/media/vk7VesvyZEwuI/giphy.gif').catch(console.error);
     }
-    // James Franco Bow Gif
+    // Bow Gif
     if (command === 'bow') {
-        message.channel.send('assets/bow.gif').catch(console.error);
+        message.channel.send('https://media3.giphy.com/media/uvqkm9ip7mNvq/giphy.gif').catch(console.error);
     }
     // Random Steve Brule gif
     if (command === 'brule') {
