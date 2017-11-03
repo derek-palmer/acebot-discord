@@ -23,18 +23,16 @@ acebot.on('ready', () => {
 });
 
 acebot.on('channelPinsUpdate', (channel) => {
-  channel.guild.defaultChannel.sendMessage(`The pins for **${channel.name}** have been updated on ${updatedDate}`).catch(console.error);
+  channel.send(`The pins for **${channel.name}** have been updated on ${updatedDate}`).catch(console.error);
 });
 
 acebot.on('channelCreate', (channel) => {
   console.log(`A ${channel.type} channel by the name of ${channel.name} was created ${channel.createdAt} with the ID of ${channel.id}`);
-  channel.guild.defaultChannel.sendMessage(`Channel: **${channel.name}** was created on ${updatedDate}`);
-  channel.sendMessage(`You successfully created this channel on ${updatedDate}.`).catch(console.error);
+  channel.send(`Successfully created this channel on ${updatedDate}.`).catch(console.error);
 });
 
 acebot.on('channelDelete', (channel) => {
-  console.log(`A ${channel.type} by the name of ${channel.name} was successfully deleted on ${updatedDate}.`);
-  channel.channel.sendMessage(`Channel: **${channel.name}** was deleted on ${updatedDate}`).catch(console.error);
+  console.log(`A ${channel.type} channel by the name of ${channel.name} was successfully deleted on ${updatedDate}.`);
 });
 
 // Message handler
@@ -58,7 +56,7 @@ acebot.on('message', (message) => {
   if (command === 'add') {
     const numArray = args.map(n => parseInt(n, 10));
     const total = numArray.reduce((p, c) => p + c);
-    message.channel.sendMessage(total).catch(console.error);
+    message.channel.send(total).catch(console.error);
   }
   // Help
   if (command === 'helpme') {
@@ -66,14 +64,14 @@ acebot.on('message', (message) => {
   }
   // Ping - Pong
   if (command === 'ping') {
-    message.channel.sendMessage('Pong!').catch(console.error);
+    message.channel.send('Pong!').catch(console.error);
   }
   // Foo - Bar - locked down to Admin Role only
   if (command === 'foo') {
     if (message.member.roles.has(AdminRole.id)) {
-      message.channel.sendMessage('bar!').catch(console.error);
+      message.channel.send('bar!').catch(console.error);
     } else {
-      message.channel.sendMessage('Hah, you noob. You don`t have access to that command!').catch(console.error);
+      message.channel.send('Hah, you noob. You don`t have access to that command!').catch(console.error);
     }
   }
   // Bitcoin
