@@ -4,8 +4,3 @@ services:
     build: .
     env_file:
     - .env
-    logging:
-      driver: syslog
-      options:
-        syslog-address: "udp://logs5.papertrailapp.com:45578"
-        tag: "{{.Name}}/{{.ID}}"
