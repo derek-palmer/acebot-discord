@@ -132,7 +132,9 @@ acebot.on('message', (message) => {
   }
   // Jumping Doge Gif
   if (command === 'imback') {
-    message.channel.send('https://media.giphy.com/media/xLsaBMK6Mg8DK/giphy.gif').catch(console.error);
+    message.channel
+      .send("https://i.imgur.com/wmba9uw.gifv")
+      .catch(console.error);
   }
   // Zoop emojis
   if (command === 'zoop') {
