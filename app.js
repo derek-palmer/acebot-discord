@@ -135,7 +135,7 @@ acebot.on('message', (message) => {
     message.channel.send('https://media.giphy.com/media/xLsaBMK6Mg8DK/giphy.gif').catch(console.error);
   }
   // Zoop emojis
-  if (command === 'imback') {
+  if (command === 'zoop') {
     message.channel
       .send(':point_right: :sunglasses: :point_right:')
       .catch(console.error);
