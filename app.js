@@ -130,6 +130,16 @@ acebot.on('message', (message) => {
   if (command === 'bringo') {
     message.channel.send('https://media.giphy.com/media/xLsaBMK6Mg8DK/giphy.gif').catch(console.error);
   }
+  // Jumping Doge Gif
+  if (command === 'imback') {
+    message.channel.send('https://media.giphy.com/media/xLsaBMK6Mg8DK/giphy.gif').catch(console.error);
+  }
+  // Zoop emojis
+  if (command === 'imback') {
+    message.channel
+      .send(':point_right: :sunglasses: :point_right:')
+      .catch(console.error);
+  }
   // Triggered Gif
   if (command === 'triggered') {
     message.channel.send('https://media.giphy.com/media/vk7VesvyZEwuI/giphy.gif').catch(console.error);
