@@ -133,7 +133,7 @@ acebot.on('message', (message) => {
   // Jumping Doge Gif
   if (command === 'imback') {
     message.channel
-      .send("https://i.imgur.com/wmba9uw.gifv")
+      .send('https://i.imgur.com/wmba9uw.gifv')
       .catch(console.error);
   }
   // Zoop emojis
