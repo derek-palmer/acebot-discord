@@ -12,6 +12,13 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app/
 RUN npm install
 
+# Resolve warning for node-uuid
+RUN npm uninstall --save node-uuid
+RUN npm install --save uuid
+
+# Install forever globally (only way I've gotten it to work)
+RUN npm install forever -g
+
 # Set the timezone
 RUN apk add --update tzdata
 ENV TZ=America/New_York
@@ -23,4 +30,4 @@ RUN rm -rf /var/cache/apk/*
 # Bundle app source
 COPY . /usr/src/app
 
-CMD ["pm2-docker", "--public", "$KEYMETRICS_PUBLIC", "--secret", "$KEYMETRICS_SECRET", "process.yml", "--watch"]
+CMD ["forever", "app.js"]
