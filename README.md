@@ -46,3 +46,5 @@ docker-compose up
 *   !bringo - Responds with favorite Steve Brule bringo gif.
 *   !bow - Responds with favorite James Franco bow gif.
 *   !hue - Responds with random HueHueHue gif.
+*   !imback - Responds with dog jumping over fence gif.
+*   !zoop - Responds with :point_right: :sunglasses: :point_right:
