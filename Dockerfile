@@ -16,6 +16,12 @@ RUN npm install
 RUN npm uninstall --save node-uuid
 RUN npm install --save uuid
 
+# To handle 'not get uid/gid'
+RUN npm config set unsafe-perm true
+
+# Install forever globally (only way I've gotten it to work)
+RUN npm install forever -g
+
 # Set the timezone
 RUN apk add --update tzdata
 ENV TZ=America/New_York
