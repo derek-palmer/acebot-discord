@@ -150,6 +150,22 @@ acebot.on('message', (message) => {
   if (command === 'bow') {
     message.channel.send('https://media3.giphy.com/media/uvqkm9ip7mNvq/giphy.gif').catch(console.error);
   }
+  // tongue Gif
+  if (command === 'tongue') {
+    message.channel.send('https://media.giphy.com/media/yxPLEa1MTvj7TErGp5/giphy.gif').catch(console.error);
+  }
+  // wat Gif
+  if (command === 'wat') {
+    message.channel.send('https://media.giphy.com/media/oDK8A6xUNjD2M/giphy.gif').catch(console.error);
+  }
+  // conan Gif
+  if (command === 'conan') {
+    message.channel.send('http://giphygifs.s3.amazonaws.com/media/SoBfbf8QGWzaU/giphy.gif').catch(console.error);
+  }
+  // steve erwin Gif
+  if (command === 'steve') {
+    message.channel.send('https://media.giphy.com/media/3oEjHFbOJ4DzYeZM6k/giphy.gif').catch(console.error);
+  }
   // Random Steve Brule gif
   if (command === 'brule') {
     // Search with options using callback
