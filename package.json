@@ -21,7 +21,7 @@
   "homepage": "https://github.com/derek-palmer/acebot-discord#readme",
   "dependencies": {
     "chai": "^4.2.0",
-    "chai-webdriver": "^1.2.0",
+    "chai-webdriver": "^1.2.3",
     "dateformat": "^3.0.2",
     "discord.js": "^11.4.2",
     "dotenv": "^6.1.0",
@@ -35,7 +35,7 @@
     "supertest": "^3.3.0"
   },
   "devDependencies": {
-    "eslint": "^5.16.0",
+    "eslint": "^8.0.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0"
   }
